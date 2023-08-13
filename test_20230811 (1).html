@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        input, select {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            font-size: 16pt;
+            color: #777;
+            padding-left: 55px;
+            background-color : transparent;
+            background-repeat: no-repeat;
+            background-position: 15px 25px;
+            background-size: 30px;
+        }
+
+        div {
+            height: 80px;
+            width: 700px;
+            max-width: 100%;
+        }
+
+        .divBox {
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: rgb(46, 154, 46);
+            font-weight: 600;
+            font-size: 35pt;
+        }
+
+        /*.wrapBox1 , .wrapBox2, .wrapBox21, .wrapBox3 : 입력요소를 감싸는 div*/
+        .wrapBox1 {
+            margin-top: 30px;
+            border: 1px solid #aaa;
+            border-bottom: none;
+            border-radius: 8px 8px 0px 0px;
+        }
+
+        .wrapBox3 {
+            border: 1px solid #aaa;
+            border-top: none;
+            border-radius: 0px 0px 8px 8px;
+        }
+
+        .wrapBox2 {
+            border: 1px solid #aaa;
+        }
+
+        .wrapBox21:nth-of-type(odd) {
+            border: 1px solid #aaa;
+        }
+
+        .wrapBox21:nth-of-type(even) {
+            border-left: 1px solid #aaa;
+            border-right: 1px solid #aaa;
+        }
+
+        /*입력요소에 focus 될때 글자색, 밑줄, 테두리 변경*/
+        #uid:focus, #unm:focus, #upw:focus, #ubirth:focus, #umail:focus, #phone:focus {
+            color: rgb(43, 150, 43);
+            text-decoration: underline;
+        }
+
+        input:focus::placeholder {
+            color: rgb(43, 150, 43);
+        }
+
+        #uid:focus, #unm:focus {
+            border: 1px solid rgb(43, 150, 43);
+            border-radius: 8px 8px 0 0;
+        }
+
+        #upw:focus, #ubirth:focus, select:focus {
+            border: 1px solid rgb(43, 150, 43);
+            border-radius: 0 0 0 0;
+        }
+
+        #umail:focus, #phone:focus {
+            border: 1px solid rgb(43, 150, 43);
+            border-radius: 0 0 8px 8px;
+        }
+
+        /*입력요소의 왼쪽에 있는 이미지 지정*/
+        #uid, #unm {
+            background-image: url('./img/person.svg');
+        }
+
+        #upw {
+            background-image: url('./img/lock.svg');
+        }
+
+        #umail {
+            background-image: url('./img/mail.svg');
+        }
+
+        #phone {
+            background-image: url('./img/tel.svg');
+        }
+
+        #ubirth {
+            background-image: url('./img/birth.svg');
+        }
+
+        #phoneCorp {
+            background-image: url('./img/trans.svg');
+        }
+
+        div.relative {
+            position: relative;
+        }
+
+        /*select 태그의 기본 속성 제거 , 화살표(캐럿) 기호 사라짐*/
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /*성별, 내.외국인 선택 디자인*/
+        .flex {
+            display: flex;
+            align-items: center;
+        }
+
+        .item {
+            display: flex;
+            width: 330px;
+            height: 60px;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            margin-left: 12px;
+        }
+
+        /*radio 기본 속성 지우기, 동그라미 모양, 선택시 점 등이 사라짐.*/
+        .radioHid {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0px;
+        }
+
+        /*radio속성 수정하기*/
+        .radioHid:first-of-type {
+            border-right: 1px solid #aaa;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .item>label {
+            display: inline-block;
+            width: 50%;
+            height: 100%;
+            font-size: 16pt;
+            color: #777;
+            text-align: center;
+            line-height: 55px;
+            cursor: pointer;
+        }
+
+        .item > label:first-of-type {
+            position: absolute;
+        }
+
+        .item > label:nth-of-type(2) {
+            position: absolute;
+            right: 5px;
+        }
+
+        /*radio 체크되었을 때 디자인*/
+        .radioHid:checked:first-child {
+            border: 1px solid rgb(43, 150, 43);
+            border-radius: 8px 0 0 8px;
+        }
+
+        .radioHid:checked:first-child + label {
+            color: rgb(43, 150, 43);
+        }
+
+        .radioHid:checked:nth-of-type(2) {
+            border: 1px solid rgb(43, 150, 43);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .radioHid:checked:nth-of-type(2) + label {
+            color: rgb(43, 150, 43);
+        }
+
+        #phoneCorp:focus > option:first-child {
+            display: none;
+        }
+
+        /*인증버튼 디자인*/
+        input[type=submit] {
+            background-color: rgb(43, 150, 43);
+            color: white;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+
+        /* 20230811_추가 */
+        input.chkClass:focus::placeholder {
+            color: red;
+        }
+    </style>
+    <script>inputEle
+        function clickBtn(){
+            document.getElementById("phoneCorp").focus();
+        }
+    </script>
+</head>
+
+<body>
+    <script>
+        /* 20230811_추가 */
+        function submitChk(){
+            let inpArr = document.getElementsByClassName('inputEle');
+            for(let i=0; i < inpArr.length; i++){
+                let o = inpArr[i];
+                if(o.value ==''){
+                    alert('값을 입력해주세요.');
+                    o.style.borderColor = "#f00";
+                    o.style.textDecoration = "underline";
+                    o.style.color = "red";
+                    o.setAttribute('class', 'chkClass');
+                    o.focus();
+                    return false;
+                }
+            }
+
+            let radioArr = document.getElementsByClassName('radioHid');
+            let cnt = 0;
+            for(let i=0; i<radioArr.length; i++){
+                console.log(radioArr[i].checked);
+               if(radioArr[i].checked == true) cnt++;
+            }
+
+            if(cnt < 2) {
+                alert('성별 또는 내국인여부를 체크해주세요.');
+                return false;
+            }
+        }
+    </script>
+    <form name="joinFrm" onsubmit="return submitChk()">
+        <div class="divBox">
+            <h1>NAVER</h1>
+            <!-- 20230811_추가  class="inputEle" -->
+            <div class="wrapBox1">
+                <input type="search" class="inputEle" name="uid" id="uid" placeholder="아이디">
+            </div>
+            <div class="wrapBox2">
+                <input type="password" class="inputEle" name="upw" id="upw" placeholder="비밀번호">
+            </div>
+            <div class="wrapBox3">
+                <input type="email" class="inputEle" name="umail" id="umail" placeholder="[선택] 비밀번호 분실 시 확인용 이메일">
+            </div>
+
+            <div class="wrapBox1">
+                <input type="search" class="inputEle" name="unm" id="unm" placeholder="이름">
+            </div>
+            <div class="wrapBox21">
+                <input type="search" class="inputEle" name="ubirth" id="ubirth" placeholder="생년월일 8자리" maxlength="8">
+            </div>
+            <div class="wrapBox21 relative">
+                <img src="./img/down.svg" onclick="clickBtn()" id="downImg"
+                    style="width:30px; height:30px;position: absolute; top: 20px; right: 30px;">
+                <select id="phoneCorp" name="phoneCorp" class="inputEle">
+                    <option value="">통신사선택</option>
+                    <option value="SKT">SKT</option>
+                    <option value="SKTA" id="SKTA">SKT 알뜰폰</option>
+                    <option value="KT">KT</option>
+                    <option value="KTA">KT 알뜰폰</option>
+                    <option value="LGU">LG U+</option>
+                    <option value="LGUA">LG U+ 알뜰폰</option>
+                </select>
+            </div>
+            <div class="wrapBox21 flex">
+                <div class="item relative">
+                    <input type="radio" name="gender" id="man" value="man" class="radioHid">
+                    <label for="man">남자</label>
+                    <input type="radio" name="gender" id="woman" value="woman" class="radioHid">
+                    <label for="woman">여자</label>
+                </div>
+                <div class="item relative">
+                    <input type="radio" name="country" id="inCountry" value="inCountry" class="radioHid">
+                    <label for="inCountry">내국인</label>
+                    <input type="radio" name="country" id="outCountry" value="outCountry" class="radioHid">
+                    <label for="outCountry">외국인</label>
+                </div>
+            </div>
+            <div class="wrapBox3">
+                <input type="tel" name="phone" id="phone" class="inputEle" placeholder="휴대전화번호">
+            </div>
+
+            <div id="submitDiv"><input type="submit" value="인증요청"></div>
+        </div>
+    </form>
+
+</body>
+
+</html>
